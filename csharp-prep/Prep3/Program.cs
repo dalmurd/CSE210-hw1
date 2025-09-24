@@ -1,30 +1,29 @@
 using System;
+using System.Security.Cryptography;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Please enter the magic number:");
-        int magicNumber = int.Parse(Console.ReadLine());
-         Console.WriteLine("What is your guess?");
-        int guess = int.Parse(Console.ReadLine());
-    while (guess != magicNumber)
-        if (guess == magicNumber)
-        {
-            Console.WriteLine("You guessed the magic number!");
+        
+        int magicNumber = RandomNumberGenerator.GetInt32(1, 101);
+        int number = 0;
 
-        }
-        else if (guess < magicNumber)
+        while (number != 1)
         {
-            Console.WriteLine("Too Low! Guess a higher number.");
-        }
-        else if (guess > magicNumber)
-        {
-            Console.WriteLine("Too High! Guess a lower number.");
-        }
-        else
-        {
-            Console.WriteLine("You did not enter a valid number.");
+            Console.WriteLine("What is your guess?");
+            int user = int.Parse(Console.ReadLine());
+            if (user == magicNumber)
+            {
+                Console.WriteLine("You guessed the magic number!");
+                number = 1;
+            }
+            else if (user < magicNumber)
+                Console.WriteLine("Too Low! Guess a higher number.");
+            else if (user > magicNumber)
+                Console.WriteLine("Too High! Guess a lower number.");
+            else
+                Console.WriteLine("You did not enter a valid number.");
         }
     }
 }
