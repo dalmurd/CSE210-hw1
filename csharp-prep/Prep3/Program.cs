@@ -6,7 +6,7 @@ class Program
     static void Main(string[] args)
     {
         
-        int magicNumber = RandomNumberGenerator.GetInt32(1, 101);
+        int magicNumber = RandomNumberGenerator.GetInt32(1, 100);
         int number = 0;
 
         while (number != 1)
