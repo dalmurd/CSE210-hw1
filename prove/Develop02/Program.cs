@@ -10,10 +10,6 @@ class Program
         Journal myJournal = new Journal();
         Console.WriteLine("Welcome to your Journal! Type 'menu' to see your options.");
 
-        Entry myEntry = new Entry();
-
-        Entry anotherEntry = new Entry();
-
         while (true)
         {
             string input = Console.ReadLine();
@@ -42,10 +38,10 @@ class Program
                 Entry newEntry = new Entry();
                 newEntry._randomPrompt = prompt;
                 newEntry._entryText = response;
-                newEntry._dateAndTime = DateTime.Now.ToString("mm/dd/yyyy");
+                newEntry._dateAndTime = DateTime.Now.ToString("MM/dd/yyyy");
 
                 //Save the entry to the journal
-                myJournal._addEntry(myEntry);
+                myJournal.AddEntry(newEntry);
                 Console.WriteLine("Entry Recorded!");
 
 
@@ -53,21 +49,21 @@ class Program
 
             else if (input.ToLower() == "display")
             {
-                myJournal._Display();
+                myJournal.Display();
             }
 
             else if (input.ToLower() == "save")
             {
                 Console.WriteLine("Enter a file name for the txt file: (e.g. myJournal.txt): ");
                 string filename = Console.ReadLine();
-                myJournal._SaveToFile(filename);
+                myJournal.SaveToFile(filename);
             }
 
-            else if (input.ToLower() == "Load")
+            else if (input.ToLower() == "load")
             {
                 Console.WriteLine("Enter the file name to load");
                 string filename = Console.ReadLine();
-                myJournal._LoadFromFile(filename);
+                myJournal.LoadFromFile(filename);
             }
 
             else if (input.ToLower() == "quit")
@@ -80,11 +76,6 @@ class Program
                 Console.WriteLine("Please type 'quit' to exit.");
             }
         }
-
-
-
-
-
 
     }
 }

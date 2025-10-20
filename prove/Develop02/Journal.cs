@@ -4,11 +4,11 @@ class Journal
     public List<Entry> _entryList = new List<Entry>();
 
     // behaviors
-    public void _addEntry(Entry entry)
+    public void AddEntry(Entry entry)
     {
         _entryList.Add(entry);
     }
-    public void _Display()
+    public void Display()
     {
         if (_entryList.Count == 0)
         {
@@ -19,26 +19,30 @@ class Journal
         Console.WriteLine("-----------------");
         foreach (Entry entry in _entryList)
         {
-            entry.Display();
+            Console.WriteLine($"{entry._dateAndTime}");
+            Console.WriteLine($"Prompt: {entry._randomPrompt}");
+            Console.WriteLine($"Response: {entry._entryText}");
             Console.WriteLine("-----------------");
+            entry.Display();
+
         }
     }
 
-    public void _SaveToFile(string filename)
+    public void SaveToFile(string filename)
     {
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
             foreach (Entry entry in _entryList)
             {
-                outputFile.WriteLine($"{entry._dateAndTime} -- {entry._randomPrompt} -- {entry._entryText}");
+                outputFile.WriteLine($"{entry._dateAndTime}|{entry._randomPrompt}|{entry._entryText}");
             }
         }
         Console.WriteLine($"Entries saved to {filename}");
     }
 
-    public void _LoadFromFile(string filename)
+    public void LoadFromFile(string filename)
     {
-        if (File.Exists(filename))
+        if (!File.Exists(filename))
         {
             Console.WriteLine("File not found!");
             return;
@@ -49,7 +53,7 @@ class Journal
 
         foreach (string line in lines)
         {
-            string[] parts = line.Split(" -- ");
+            string[] parts = line.Split("|");
             if (parts.Length == 3)
             {
                 Entry entry = new Entry();
