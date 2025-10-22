@@ -21,10 +21,22 @@ class Program
             if (input.ToLower() == "quit")
             { break; }
 
-            scripture.HideRandomWords(3); // Hides 3 random words at a time on Enter
+            int visible = scripture.VisibleWordCount();
+            if (visible > 3)
+            {
+                scripture.HideRandomWords(3); // Hides 3 random words at a time on Enter
+            }
+            else
+            {
+                scripture.HideRandomWords(visible); // runs to hide the remaining words if less then 3 are left
+                Console.Clear();
+                scripture.Display();
+                break;
+            }
+
             if (scripture.AllWordsHidden())
             {
-                Console.Clear();
+                Console.Clear(); // displays the final scripture with all words hidden before exiting
                 scripture.Display();
                 break;
             }
